@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template,redirect,request,url_for
+from flask import Flask, render_template, redirect, request, url_for
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 UPLOAD_FOLDER='C:\\Users\\USER\\Pictures'

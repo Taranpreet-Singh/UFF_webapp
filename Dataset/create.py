@@ -15,7 +15,7 @@ def split_into_frames(vid):
             break
     return frames
 
-
+# Croping faces and reducing frames
 def crop_faces(clip):
     frames = split_into_frames(clip)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')

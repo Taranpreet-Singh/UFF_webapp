@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template,redirect,request,url_for
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 UPLOAD_FOLDER='C:\\Users\\USER\\Pictures'
@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] =False
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["MP4", "WEBM"]
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
+app.static_folder='static'
 db=SQLAlchemy(app)
 class videofiles(db.Model):
     id=db.Column(db.Integer,primary_key=True)
@@ -17,6 +18,7 @@ class videofiles(db.Model):
 @app.route('/')
 def home():
     return render_template('home.html')
+
 
 
 def allowed_image(filename):
@@ -51,6 +53,7 @@ def upload_vid():
                 f=request.files['inputfile']
                 f.save(os.path.join(app.config['UPLOAD_FOLDER'],f.filename))
                 newdata = videofiles(name=f.filename)
+                print(type(newdata))
                 db.session.add(newdata)
                 db.session.commit()
                 return redirect(url_for('play'))
@@ -79,7 +82,7 @@ def upload_vid():
                     print("That file extension is not allowed")
                     return redirect(request.url)
 
-    return render_template("upload_vid.html")
+    return render_template("upload_video.html")
 @app.route('/play')
 def play():
         file_data = videofiles.query.all()
@@ -88,10 +91,10 @@ def play():
             l.append(i.name)
             print(i.name)
         print(l)
-        return render_template('home.html', videos=l)
+        return render_template('play.html', videos=1)
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug="True")
 
 
 

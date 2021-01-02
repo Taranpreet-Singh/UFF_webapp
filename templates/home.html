@@ -1,16 +1,30 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block content %}
-<!-- Form -->
-<div class='home'>
-    <div class='container'>
-        <div class='upload'>
-            <!-- Janhavi's shit XD -->
-            <form class='upload_form' action="/upload_vid" method="POST">
-                <p style="color: #ffbb33; font-size: 28px;">Upload a video</p>
-                <input class='upload_button' type="submit" value="Upload">
-            </form>
-            <!-- Janhavi's shit ends XD-->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h1>Upload an image</h1>
+      <hr>
+
+      <form action="/upload_vid" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <!--<label>Select VID</label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="image" id="image">
+            <label class="custom-file-label" for="image">Select VID...</label>-->
+          </div>
         </div>
+
+        <button type="submit" class="btn btn-primary">click here to continue</button>
+
+      </form>
+
     </div>
+  </div>
 </div>
+
 {% endblock %}
